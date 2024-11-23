@@ -239,8 +239,8 @@ handle_args() {
 
 	legacy=$(tmux_option_or_fallback "@sessionx-legacy-fzf-support" "off")
 	if [[ "${legacy}" == "off" ]]; then
-		args+=(--border-label "Current session: \"$CURRENT\" ")
-		args+=(--bind 'focus:transform-preview-label:echo [ {} ]')
+		args+=(--border-label "$(printf '\e[34m%s\e[0m' " Current session:  [ $CURRENT ] ")")
+		args+=(--bind 'focus:transform-preview-label:echo $'\''\e[34m Preview: [ {} ] \e[0m'\'' ')
 	fi
 	auto_accept=$(tmux_option_or_fallback "@sessionx-auto-accept" "off")
 	if [[ "${auto_accept}" == "on" ]]; then
