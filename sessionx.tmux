@@ -90,7 +90,7 @@ handle_args() {
 	RENAME_SESSION_RELOAD='bash -c '\'' tmux list-sessions | sed -E "s/:.*$//"; '\'''
 	RENAME_SESSION="$bind_rename_session:execute($RENAME_SESSION_EXEC)+reload($RENAME_SESSION_RELOAD)"
 
-	HEADER="$bind_accept=󰿄  $bind_kill_session=󱂧  $bind_rename_session=󰑕  $bind_configuration_mode=󱃖  $bind_window_mode=   $bind_new_window=󰇘  $bind_back=󰌍  $bind_tree_mode=󰐆   $bind_scroll_up=  $bind_scroll_down= / $bind_zo="
+	HEADER="$bind_accept=󰿄  $bind_kill_session=󱂧  $bind_rename_session=󰑕  $bind_configuration_mode=󱃖  $bind_window_mode=  $bind_new_window=  $bind_back=󰌍  $bind_tree_mode=󰐆  $bind_zo="
 	if is_fzf-marks_enabled; then
 		HEADER="$HEADER  $(get_fzf-marks_keybind)=󰣉"
 	fi
@@ -133,8 +133,8 @@ handle_args() {
 
 	legacy=$(tmux_option_or_fallback "@sessionx-legacy-fzf-support" "off")
 	if [[ "${legacy}" == "off" ]]; then
-		args+=(--border-label "Current session: \"$CURRENT\" ")
-		args+=(--bind 'focus:transform-preview-label:echo [ {} ]')
+		args+=(--border-label "$(printf '\e[34m%s\e[0m' " Current session:  [ $CURRENT ] ")")
+		args+=(--bind 'focus:transform-preview-label:echo $'\''\e[34m Preview: [ {} ] \e[0m'\'' ')
 	fi
 	auto_accept=$(tmux_option_or_fallback "@sessionx-auto-accept" "off")
 	if [[ "${auto_accept}" == "on" ]]; then
