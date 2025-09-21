@@ -127,6 +127,12 @@ run_plugin() {
 	Z_MODE=$(tmux_option_or_fallback "@sessionx-zoxide-mode" "off")
 	eval $(tmux show-option -gqv @sessionx-_built-args)
 	eval $(tmux show-option -gqv @sessionx-_built-extra-options)
+
+	legacy=$(tmux_option_or_fallback "@sessionx-legacy-fzf-support" "off")
+	if [[ "${legacy}" == "off" ]]; then
+		args+=(--border-label "$(printf '\e[34m%s\e[0m' " Current session:  [ $CURRENT ] ")")
+		args+=(--bind 'focus:transform-preview-label:echo $'\''\e[34m Preview: [ {} ] \e[0m'\'' ')
+	fi
 	handle_input
 	args+=(--bind "$BACK")
 
