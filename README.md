@@ -10,6 +10,7 @@ A fuzzy Tmux session manager with preview capabilities, deleting, renaming and m
 - [fzf](https://github.com/junegunn/fzf)
 - [fzf-tmux](https://github.com/junegunn/fzf#fzf-tmux-script)
 - [bat](https://github.com/sharkdp/bat)
+- [bash >=4.0](https://www.gnu.org/software/bash/), see [issue #166](https://github.com/omerxx/tmux-sessionx/issues/166#issuecomment-3185838002)
 - Optional: [zoxide](https://github.com/ajeetdsouza/zoxide)
 
 ## Install 💻
